@@ -13,7 +13,7 @@
 <body>
 
     <h1>Psychic-Game</h1>
-    <h2>Can you guess the number the computer is thinking of?</h2>
+    <h2>Can you guess the letter the computer is thinking of?</h2>
     <br />
     <h3>Wins</h3>
     <h3 id="wins"></h3>
@@ -42,12 +42,9 @@
 
             if (event.keyCode >= 65 && event.keyCode <= 90) {
 
-                document.getElementById("guessed").innerHTML = guessed.join(", ");
-            }
-
-            if (event.keyCode >= 65 && event.keyCode <= 90) {
-
-                if (guess == choice) {
+                if (guessed.indexOf(guess) > -1) {
+                    alert("You have already guessed the letter " + guess);
+                } else if (guess == choice) {
                     wins++;
                     guessesLeft--;
                     guessed = [];
@@ -62,6 +59,8 @@
                     console.log(choice);
 
                 } else {
+                    guessed.push(guess);
+                    document.getElementById("guessed").innerHTML = guessed.join(", ");
                     guessesLeft = guessesLeft - 1;
                     document.getElementById("guessesLeft").innerHTML = guessesLeft;
                 }
